@@ -54,7 +54,7 @@ function uno(tabla, id){
 
 function unoCompuesto(tabla, id){
     return  new Promise((resolve, reject)=>{
-        conexion.query(`SELECT * FROM ${tabla} WHERE Roles_idRoles=${id}`, (error,result)=>{
+        conexion.query(`select idRoles, Nombre, idPermisos, Descripcion from roles,permisos, permisos_has_roles where Roles_idRoles=${id} and Roles_idRoles=idRoles and Permisos_idPermisos = idPermisos;`, (error,result)=>{
             return error ? reject(error) : resolve(result);
         })
     });
