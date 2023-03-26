@@ -52,6 +52,15 @@ function uno(tabla, id){
 
 }
 
+function unoCompuesto(tabla, id){
+    return  new Promise((resolve, reject)=>{
+        conexion.query(`SELECT * FROM ${tabla} WHERE Roles_idRoles=${id}`, (error,result)=>{
+            return error ? reject(error) : resolve(result);
+        })
+    });
+
+}
+
 function insertar(tabla, data){
     return  new Promise((resolve, reject)=>{
         conexion.query(`INSERT INTO ${tabla} SET ?`,data, (error,result)=>{
@@ -80,7 +89,16 @@ function agregar(tabla, data){
         return actualizar(tabla, data);
     }
 
-} 
+}
+
+function agregarCompuesto(tabla, data){
+    return  new Promise((resolve, reject)=>{
+        conexion.query(`INSERT INTO ${tabla} SET ?`,data, (error,result)=>{
+            return error ? reject(error) : resolve(result);
+        })
+    });
+
+}
 
 function eliminar(tabla, data){
     let id = Object.values(data);
@@ -92,6 +110,16 @@ function eliminar(tabla, data){
 
 }
 
+function eliminarCompuesto(tabla, id){
+   
+    return  new Promise((resolve, reject)=>{
+        conexion.query(`DELETE FROM ${tabla} WHERE Roles_idRoles=${id}`, (error,result)=>{
+            return error ? reject(error) : resolve(result);
+        })
+    });
+
+}
+
 module.exports= {
-    todos,uno,agregar,eliminar
+    todos,uno,agregar,eliminar,unoCompuesto,agregarCompuesto,eliminarCompuesto
 }

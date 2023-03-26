@@ -9,16 +9,16 @@ function todos(){
 
 function uno(id){
 
-    return db.uno(tabla, id);
+    return db.unoCompuesto(tabla, id);
 }
 
 function agregar(body) {
-    return db.agregar(tabla, body);
+    return db.agregarCompuesto(tabla, body);
 }
 
 function eliminar(body){
 
-    return db.eliminar(tabla, body);
+    return db.eliminarCompuesto(tabla, body);
 }
 
 module.exports = {

@@ -9,7 +9,7 @@ router.get('/', todos);
 router.get('/:id', uno);
 router.post('/', agregar);
 
-router.put('/', eliminar)
+router.put('/:id', eliminar)
 
 async function todos(req, res, next) {
 
@@ -35,13 +35,7 @@ async function agregar(req, res, next) {
     try {
         const items = await controlador.agregar(req.body);
         console.log(req.body)
-        if (req.body.idRoles == 0) {
-            mensaje = 'Item guardado con exito';
-        } else {
-            mensaje = 'Item actualizado con exito';
-        }
-
-        respuesta.success(req, res, mensaje, 201);
+        respuesta.success(req, res, 'roles-permisos actualizados', 201);
     } catch (error) {
         next(error);
     }
@@ -49,7 +43,7 @@ async function agregar(req, res, next) {
 
 async function eliminar(req, res, next) {
     try {
-        const items = await controlador.eliminar(req.body);
+        const items = await controlador.eliminar(req.params.id);
         respuesta.success(req, res, 'Item eliminado', 200);
     } catch (error) {
         next(error);
