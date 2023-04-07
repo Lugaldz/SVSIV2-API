@@ -61,10 +61,8 @@ function uno(id){
 }
 
 async function agregar(body) {
-    if(body.contrasena){
-        console.log(body.contrasena);
-        body.contrasena = await bcrypt.hash(body.contrasena.toString(), 5);
-        console.log(body.contrasena);
+    if(body.Contrasena){
+        body.Contrasena = await bcrypt.hash(body.Contrasena.toString(), 5);
     }
     return db.agregar(tabla, body);
 }
