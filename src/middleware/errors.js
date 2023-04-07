@@ -7,4 +7,4 @@ function error(message, code){
     return e;
 }
 
-module.exports = error;
+module.exports = {error};
