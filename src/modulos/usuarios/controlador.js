@@ -7,7 +7,9 @@ const keys = require('../../sec/keys')
 async function login(body){
     const data = await db.query(tabla, {Usuario: body.Usuario});
     if (data==undefined) {
-        throw new Error('Informacion invalida')
+        return {
+            token: null
+        }
     }
      const valido = await bcrypt.compare(body.Contrasena,data.Contrasena) 
      console.log(valido)
@@ -23,7 +25,9 @@ async function login(body){
                 token:token
             }
         }else{
-            throw new Error('Informacion invalida');
+            return {
+                token: null
+            }
         }
     
 }
