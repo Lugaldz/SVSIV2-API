@@ -6,6 +6,7 @@ const controlador = require('./controlador')
 const router = express.Router();
 
 router.get('/', todos);
+router.get('/nicks', nicks);
 router.get('/:id', uno);
 router.post('/', agregar);
 router.put('/', eliminar);
@@ -51,6 +52,16 @@ async function uno(req, res, next) {
     } catch (error) {
         next(error);
 
+    }
+};
+
+async function nicks(req, res, next) {
+
+    try {
+        const items = await controlador.nicks();
+        respuesta.success(req, res, items, 200);
+    } catch (error) {
+        next(error);
     }
 };
 
