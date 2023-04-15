@@ -56,7 +56,7 @@ async function verificacion(req){
 
 function todos(){
 
-    return db.todos(tabla);
+    return db.queryMultiple(tabla,{EstatusActividad_idEstatusActividad: 1});
 }
 
 function uno(id){

@@ -125,9 +125,16 @@ function query(tabla, consulta){
             return error ? reject(error) : resolve(result[0]);
         })
     });
+}
 
+function queryMultiple(tabla, consulta){
+    return  new Promise((resolve, reject)=>{
+        conexion.query(`SELECT * FROM ${tabla} WHERE ?`, consulta,(error,result)=>{
+            return error ? reject(error) : resolve(result);
+        })
+    });
 }
 
 module.exports= {
-    todos,uno,agregar,eliminar,unoCompuesto,agregarCompuesto,eliminarCompuesto,query
+    todos,uno,agregar,eliminar,unoCompuesto,agregarCompuesto,eliminarCompuesto,query, queryMultiple
 }
