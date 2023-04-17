@@ -5,13 +5,17 @@ const tabla = 'empleados';
 const keys = require('../../sec/keys')
 
 async function login(body){
-    const data = await db.query(tabla, {Usuario: body.Usuario});
-    if (data==undefined) {
+    const data = await db.queryMultiple(tabla, {Usuario: body.Usuario}, {EstatusActividad_idEstatusActividad:1});
+    //const data = await db.query(tabla, `Usuario=${body.Usuario} AND EstatusActividad_idEstatusActividad=1`);
+    console.log(data[0])
+  
+    if (data[0]==undefined) {
         return {
             token: null
         }
     }
-     const valido = await bcrypt.compare(body.Contrasena,data.Contrasena) 
+    
+     const valido = await bcrypt.compare(body.Contrasena,data[0].Contrasena) 
      console.log(valido)
         if(valido){
             //generar un token
@@ -56,12 +60,16 @@ async function verificacion(req){
 
 function todos(){
 
-    return db.todos(tabla);
+    return db.query(tabla,{EstatusActividad_idEstatusActividad: 1});
 }
 
 function uno(id){
 
     return db.uno(tabla, id);
+}
+
+function nicks(){
+    return db.column(tabla,'Usuario');
 }
 
 async function agregar(body) {
@@ -77,5 +85,5 @@ function eliminar(body){
 }
 
 module.exports = {
-    todos,uno,agregar,eliminar, login, verificacion
+    todos,uno,agregar,eliminar, login, verificacion, nicks
 }

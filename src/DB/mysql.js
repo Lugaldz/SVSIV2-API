@@ -122,12 +122,27 @@ function eliminarCompuesto(tabla, id){
 function query(tabla, consulta){
     return  new Promise((resolve, reject)=>{
         conexion.query(`SELECT * FROM ${tabla} WHERE ?`, consulta,(error,result)=>{
-            return error ? reject(error) : resolve(result[0]);
+            return error ? reject(error) : resolve(result);
         })
     });
+}
 
+function queryMultiple(tabla, consulta1, consulta2){
+    return  new Promise((resolve, reject)=>{
+        conexion.query(`SELECT * FROM ${tabla} WHERE ? AND ?`, [consulta1,consulta2],(error,result)=>{
+            return error ? reject(error) : resolve(result);
+        })
+    });
+}
+
+function column(tabla, columna){
+    return  new Promise((resolve, reject)=>{
+        conexion.query(`SELECT ${columna} FROM ${tabla}`, (error,result)=>{
+            return error ? reject(error) : resolve(result);
+        })
+    });
 }
 
 module.exports= {
-    todos,uno,agregar,eliminar,unoCompuesto,agregarCompuesto,eliminarCompuesto,query
+    todos,uno,agregar,eliminar,unoCompuesto,agregarCompuesto,eliminarCompuesto,query, queryMultiple, column
 }
