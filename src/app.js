@@ -8,6 +8,7 @@ const roles = require('./modulos/roles/rutas');
 const permisos = require('./modulos/permisos/rutas');
 const permisosRoles = require('./modulos/permisosRoles/rutas');
 const usuarios = require('./modulos/usuarios/rutas');
+const motos = require('./modulos/motos/rutas');
 const error = require('./red/errors');
 
 const app = express();
@@ -43,6 +44,7 @@ app.use('/api/roles',roles);
 app.use('/api/permisos',permisos);
 app.use('/api/permisosRoles',permisosRoles);
 app.use('/api/usuarios',usuarios);
+app.use('/api/motos',motos);
 app.use(error);
 
 
