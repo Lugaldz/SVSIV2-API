@@ -24,11 +24,16 @@ async function login(req, res, next){
 
 async function verificacion(req ,res, next){
     try {
-        await controlador.verificacion(req);
-        if(!req.decoded){
-            respuesta.success(req, res, "No autorizado", 401);
+        //console.log(req.body)
+        //console.log(req.body.IdInterfaz)
+        //console.log(req.route)
+        //console.log(req.decoded)
+        const admitido = await controlador.verificacion(req);
+        //console.log(admitido)
+        if(!admitido){
+            respuesta.success(req, res,{accepted:false, message:"No autorizado"}, 401);
         }else{
-            respuesta.success(req, res, "Autorizado", 200);
+            respuesta.success(req, res, {accepted:true, message:"Autorizado"}, 200);
         }
     } catch (error) {
         next(error);

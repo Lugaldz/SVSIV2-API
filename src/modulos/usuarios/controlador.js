@@ -37,6 +37,7 @@ async function login(body){
 }
 
 async function verificacion(req){
+    let valido = false;
     let token = req.headers['x-access-token'] || req.headers['authorization'];
     if(!token){
         return false;
@@ -46,16 +47,27 @@ async function verificacion(req){
         console.log(token)
     }
     if(token){
-        jwt.verify(token, keys.key, (error, decoded)=>{
+        valido = jwt.verify(token, keys.key,async (error, decoded)=> {
             if (error) {
                 console.log("error")
+                return false;
+                
             }else{
+                
+                //console.log(req.body);
+                //console.log(req.body.IdInterfaz);
                 req.decoded = decoded;
-                console.log(decoded);
+                //console.log(decoded);
+                //console.log(req.body.Usuario)
+                const datosUser =  await db.query("Empleados",{Usuario:req.body.Usuario});
+                //console.log(datosUser[0].Roles_idRoles)
+                const permisos = await db.unoCompuesto("permisos_has_roles",datosUser[0].Roles_idRoles);
+
+                return permisos.find(element => element.idPermisos==req.body.IdInterfaz)
             }
         })
     }
-
+    return valido;
 }
 
 function todos(){

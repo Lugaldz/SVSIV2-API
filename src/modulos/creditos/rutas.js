@@ -35,7 +35,7 @@ async function agregar(req, res, next) {
     try {
         const items = await controlador.agregar(req.body);
 
-        if (req.body.idMoto == 0) {
+        if (req.body.idTipos_De_Creditos == 0) {
             mensaje = 'Item guardado con exito';
         } else {
             mensaje = 'Item actualizado con exito';
