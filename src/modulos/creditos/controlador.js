@@ -5,10 +5,11 @@ const tabla = 'tipos_de_creditos';
 function todos(){
 
     return db.todos(tabla);
+
 }
 
 function uno(id){
-
+    
     return db.uno(tabla, id);
 }
 

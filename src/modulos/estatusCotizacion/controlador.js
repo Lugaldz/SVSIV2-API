@@ -1,6 +1,6 @@
 const db = require('../../DB/mysql');
 
-const tabla = 'estatusCotizacion';
+const tabla = 'estatuscotizacion';
 
 function todos(){
 
