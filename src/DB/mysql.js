@@ -72,7 +72,6 @@ function insertar(tabla, data){
 
 function actualizar(tabla, data){
     let id = Object.values(data);
-    console.log("el id es:"+id[0]);
     return  new Promise((resolve, reject)=>{
         conexion.query(`UPDATE ${tabla} SET ? WHERE id${tabla} = ?`,[data, id[0]], (error,result)=>{
             return error ? reject(error) : resolve(result);
@@ -120,6 +119,30 @@ function eliminarCompuesto(tabla, id){
 
 }
 
+function query(tabla, consulta){
+    return  new Promise((resolve, reject)=>{
+        conexion.query(`SELECT * FROM ${tabla} WHERE ?`, consulta,(error,result)=>{
+            return error ? reject(error) : resolve(result);
+        })
+    });
+}
+
+function queryMultiple(tabla, consulta1, consulta2){
+    return  new Promise((resolve, reject)=>{
+        conexion.query(`SELECT * FROM ${tabla} WHERE ? AND ?`, [consulta1,consulta2],(error,result)=>{
+            return error ? reject(error) : resolve(result);
+        })
+    });
+}
+
+function column(tabla, columna){
+    return  new Promise((resolve, reject)=>{
+        conexion.query(`SELECT ${columna} FROM ${tabla}`, (error,result)=>{
+            return error ? reject(error) : resolve(result);
+        })
+    });
+}
+
 module.exports= {
-    todos,uno,agregar,eliminar,unoCompuesto,agregarCompuesto,eliminarCompuesto
+    todos,uno,agregar,eliminar,unoCompuesto,agregarCompuesto,eliminarCompuesto,query, queryMultiple, column
 }
