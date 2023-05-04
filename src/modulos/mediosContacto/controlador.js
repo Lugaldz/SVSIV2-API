@@ -1,15 +1,15 @@
 const db = require('../../DB/mysql');
 
-const tabla = 'asesoresbaz';
+const tabla = 'mediodecontacto';
 
 function todos(){
 
-    return db.query(tabla,{EstatusActividad_idEstatusActividad:1});
+    return db.query(tabla,{ idEstatusActividad: 1 });
 }
 
-function historial(){
+function nombres(id){
 
-    return db.todos(tabla);
+    return db.column(tabla, 'Descripcion');
 }
 
 function uno(id){
@@ -27,5 +27,5 @@ function eliminar(body){
 }
 
 module.exports = {
-    todos,uno,agregar,eliminar,historial
+    todos,uno,agregar,eliminar,nombres
 }

@@ -12,6 +12,7 @@ const motos = require('./modulos/motos/rutas');
 const creditos = require('./modulos/creditos/rutas');
 const estatusCot = require('./modulos/estatusCotizacion/rutas');
 const asesoresbaz = require('./modulos/asesoresbaz/rutas');
+const mediosContacto = require('./modulos/mediosContacto/rutas');
 const error = require('./red/errors');
 
 const app = express();
@@ -51,6 +52,7 @@ app.use('/api/motos',motos);
 app.use('/api/creditos',creditos);
 app.use('/api/estatusCotizacion',estatusCot);
 app.use('/api/asesoresbaz',asesoresbaz);
+app.use('/api/mediosContacto',mediosContacto);
 app.use(error);
 
 

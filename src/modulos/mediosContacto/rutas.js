@@ -6,7 +6,7 @@ const controlador = require('./controlador')
 const router = express.Router();
 
 router.get('/', todos);
-router.get('/history', historial);
+router.get('/nombreMedios', nombres);
 router.get('/:id', uno);
 router.post('/', agregar);
 
@@ -22,10 +22,10 @@ async function todos(req, res, next) {
     }
 };
 
-async function historial(req, res, next) {
+async function nombres(req, res, next) {
 
     try {
-        const items = await controlador.historial();
+        const items = await controlador.nombres();
         respuesta.success(req, res, items, 200);
     } catch (error) {
         next(error);
@@ -46,7 +46,7 @@ async function agregar(req, res, next) {
     try {
         const items = await controlador.agregar(req.body);
 
-        if (req.body.idAsesoresBAZ == 0) {
+        if (req.body.idMedioDeContacto == 0) {
             mensaje = 'Item guardado con exito';
         } else {
             mensaje = 'Item actualizado con exito';
