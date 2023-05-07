@@ -8,6 +8,7 @@ const router = express.Router();
 router.get('/', todos);
 router.get('/history', historial);
 router.get('/:id', uno);
+router.post('/existe',existe);
 router.post('/', agregar);
 
 router.put('/', eliminar)
@@ -42,11 +43,21 @@ async function uno(req, res, next) {
     }
 };
 
+async function existe(req, res, next) {
+    try {
+        const items = await controlador.existe(req.body);
+        respuesta.success(req, res, items, 200);
+    } catch (error) {
+        next(error);
+
+    }
+};
+
 async function agregar(req, res, next) {
     try {
         const items = await controlador.agregar(req.body);
 
-        if (req.body.idAsesoresBAZ == 0) {
+        if (req.body.idClientes == 0) {
             mensaje = 'Item guardado con exito';
         } else {
             mensaje = 'Item actualizado con exito';
