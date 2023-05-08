@@ -5,6 +5,9 @@ const tabla = 'clientes';
 async function existe(cliente){
     const result = await db.queryFlex(tabla,cliente); 
     console.log(result.length!=0)
+    if (result.length!=0) {
+        return result[0].idClientes
+    }
     return result.length!=0;
 }
 

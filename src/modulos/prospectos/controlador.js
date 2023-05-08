@@ -2,6 +2,12 @@ const db = require('../../DB/mysql');
 
 const tabla = 'prospectos';
 
+async function existe(prospecto){
+    const result = await db.queryFlex(tabla,prospecto); 
+    console.log(result.length!=0)
+    return result.length!=0;
+}
+
 function todos(){
 
     return db.todos(tabla);
@@ -22,5 +28,5 @@ function eliminar(body){
 }
 
 module.exports = {
-    todos,uno,agregar,eliminar//,historial
+    todos,uno,agregar,eliminar,existe//,historial
 }

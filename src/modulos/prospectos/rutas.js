@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.get('/', todos);
 router.get('/:id', uno);
+router.post('/existe',existe);
 router.post('/', agregar);
 
 router.put('/', eliminar)
@@ -23,17 +24,17 @@ async function todos(req, res, next) {
         next(error);
     }
 };
-/*
-async function historial(req, res, next) {
 
+async function existe(req, res, next) {
     try {
-        const items = await controlador.historial();
+        const items = await controlador.existe(req.body);
         respuesta.success(req, res, items, 200);
     } catch (error) {
         next(error);
+
     }
 };
-*/
+
 async function uno(req, res, next) {
     try {
         const items = await controlador.uno(req.params.id);

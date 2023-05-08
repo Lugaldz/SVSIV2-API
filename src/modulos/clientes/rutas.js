@@ -8,7 +8,7 @@ const router = express.Router();
 router.get('/', todos);
 router.get('/history', historial);
 router.get('/:id', uno);
-router.post('/existe',existe);
+router.post('/existe', existe);
 router.post('/', agregar);
 
 router.put('/', eliminar)
@@ -58,7 +58,7 @@ async function agregar(req, res, next) {
         const items = await controlador.agregar(req.body);
 
         if (req.body.idClientes == 0) {
-            mensaje = 'Item guardado con exito';
+            mensaje = items.insertId;
         } else {
             mensaje = 'Item actualizado con exito';
         }
