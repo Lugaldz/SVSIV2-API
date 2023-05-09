@@ -4,6 +4,7 @@ const tabla = 'prospectos';
 
 async function existe(prospecto){
     const result = await db.queryFlex(tabla,prospecto); 
+    console.log(result)
     console.log(result.length!=0)
     return result.length!=0;
 }

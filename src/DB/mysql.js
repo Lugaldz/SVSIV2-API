@@ -141,7 +141,7 @@ function queryFlex(tabla, consulta){
     let count=0;
     const tamanio = Object.keys(consulta).length;
     const valores = Object.values(consulta);
-
+    console.log(valores)
     for (const key in consulta) {
         if (consulta.hasOwnProperty(key)) {
             count++;

@@ -4,7 +4,12 @@ const tabla = 'estatusCotizacion';
 
 function todos(){
 
-    return db.todos(tabla);
+    return db.query(tabla,{ idEstatusActividad: 1 });
+}
+
+function nombres(){
+
+    return db.column(tabla, 'Descripcion');
 }
 
 function uno(id){
@@ -22,5 +27,5 @@ function eliminar(body){
 }
 
 module.exports = {
-    todos,uno,agregar,eliminar
+    todos,uno,agregar,eliminar,nombres
 }

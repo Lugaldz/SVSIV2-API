@@ -7,7 +7,7 @@ function todos(){
     return db.query(tabla,{ idEstatusActividad: 1 });
 }
 
-function nombres(id){
+function nombres(){
 
     return db.column(tabla, 'Descripcion');
 }
