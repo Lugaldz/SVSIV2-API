@@ -15,7 +15,8 @@ async function login(body) {
         }
     }
 
-    const valido = await bcrypt.compare(body.Contrasena, data[0].Contrasena)
+    var valido = await bcrypt.compare(body.Contrasena, data[0].Contrasena)
+    //valido=true;
     console.log(valido)
     if (valido) {
         //generar un token

@@ -4,7 +4,7 @@ const tabla = 'roles';
 
 function todos(){
 
-    return db.todos(tabla);
+    return db.query(tabla,{ idEstatusActividad: 1 });
 }
 
 function uno(id){

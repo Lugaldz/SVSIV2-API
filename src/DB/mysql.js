@@ -152,7 +152,8 @@ function queryFlex(tabla, consulta){
             }
         }
     }
-
+    console.log(query)
+    console.log(valores)
     return  new Promise((resolve, reject)=>{
         conexion.query(query, valores,(error,result)=>{
             return error ? reject(error) : resolve(result);
