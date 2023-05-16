@@ -60,10 +60,12 @@ async function agregar(req, res, next) {
 
 async function eliminar(req, res, next) {
     try {
+        console.log(req.body)
         const items = await controlador.eliminar(req.body);
+      
         respuesta.success(req, res, 'Item eliminado', 200);
     } catch (error) {
         next(error);
-    }
+    } 
 };
 module.exports = router;

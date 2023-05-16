@@ -4,7 +4,7 @@ const tabla = 'mediodecontacto';
 
 function todos(){
 
-    return db.query(tabla,{ idEstatusActividad: 1 });
+    return db.query(tabla, {idEstatusActividad:1});
 }
 
 function nombres(id){
