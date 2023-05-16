@@ -15,6 +15,7 @@ const asesoresbaz = require('./modulos/asesoresbaz/rutas');
 const mediosContacto = require('./modulos/mediosContacto/rutas');
 const clientes = require('./modulos/clientes/rutas');
 const prospectos = require('./modulos/prospectos/rutas');
+const cotizaciones = require('./modulos/cotizaciones/rutas');
 
 const error = require('./red/errors');
 
@@ -58,6 +59,7 @@ app.use('/api/asesoresbaz',asesoresbaz);
 app.use('/api/mediosContacto',mediosContacto);
 app.use('/api/clientes',clientes);
 app.use('/api/prospectos',prospectos);
+app.use('/api/cotizaciones',cotizaciones);
 app.use(error);
 
 

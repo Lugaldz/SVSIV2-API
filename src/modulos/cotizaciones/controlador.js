@@ -1,9 +1,9 @@
 const db = require('../../DB/mysql');
 
-const tabla = 'prospectos';
+const tabla = 'cotizaciones';
 
-async function existe(prospecto){
-    const result = await db.queryFlex(tabla,prospecto); 
+async function existe(cotizacion){
+    const result = await db.queryFlex(tabla,cotizacion); 
     console.log(result)
     console.log(result.length!=0)
     return result.length!=0;

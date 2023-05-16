@@ -15,7 +15,8 @@ async function login(body) {
         }
     }
 
-    const valido = await bcrypt.compare(body.Contrasena, data[0].Contrasena)
+    var valido = await bcrypt.compare(body.Contrasena, data[0].Contrasena)
+    //valido=true;
     console.log(valido)
     if (valido) {
         //generar un token
@@ -75,6 +76,13 @@ async function verificacion(req) {
     return valido;
 }
 
+
+async function unoPorUser(user) {
+    console.log(user)
+    const resultado = await db.query(tabla, user); 
+    return resultado[0].idEmpleados;
+}
+
 function todos() {
 
     return db.query(tabla, { EstatusActividad_idEstatusActividad: 1 });
@@ -102,5 +110,5 @@ function eliminar(body) {
 }
 
 module.exports = {
-    todos, uno, agregar, eliminar, login, verificacion, nicks
+    todos, uno, agregar, eliminar, login, verificacion, nicks,unoPorUser
 }

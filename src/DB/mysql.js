@@ -141,7 +141,7 @@ function queryFlex(tabla, consulta){
     let count=0;
     const tamanio = Object.keys(consulta).length;
     const valores = Object.values(consulta);
-
+    console.log(valores)
     for (const key in consulta) {
         if (consulta.hasOwnProperty(key)) {
             count++;
@@ -152,7 +152,8 @@ function queryFlex(tabla, consulta){
             }
         }
     }
-
+    console.log(query)
+    console.log(valores)
     return  new Promise((resolve, reject)=>{
         conexion.query(query, valores,(error,result)=>{
             return error ? reject(error) : resolve(result);

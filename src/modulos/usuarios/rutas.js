@@ -7,6 +7,7 @@ const router = express.Router();
 
 router.get('/', todos);
 router.get('/nicks', nicks);
+router.post('/userid', unoPorUser);
 router.get('/:id', uno);
 router.post('/', agregar);
 router.put('/', eliminar);
@@ -38,7 +39,17 @@ async function verificacion(req ,res, next){
     } catch (error) {
         next(error);
     }
-}
+} 
+
+async function unoPorUser(req, res, next) {
+
+    try {
+        const items = await controlador.unoPorUser(req.body);
+        respuesta.success(req, res, items, 200);
+    } catch (error) {
+        next(error);
+    }
+};
 
 async function todos(req, res, next) {
 

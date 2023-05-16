@@ -6,6 +6,7 @@ const controlador = require('./controlador')
 const router = express.Router();
 
 router.get('/', todos);
+router.get('/nombreestatusCotizacion', nombres);
 router.get('/:id', uno);
 router.post('/', agregar);
 
@@ -28,6 +29,16 @@ async function uno(req, res, next) {
     } catch (error) {
         next(error);
 
+    }
+};
+
+async function nombres(req, res, next) {
+
+    try {
+        const items = await controlador.nombres();
+        respuesta.success(req, res, items, 200);
+    } catch (error) {
+        next(error);
     }
 };
 
