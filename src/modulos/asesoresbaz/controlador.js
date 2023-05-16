@@ -4,6 +4,11 @@ const tabla = 'asesoresbaz';
 
 function todos(){
 
+    return db.query(tabla,{EstatusActividad_idEstatusActividad:1});
+}
+
+function historial(){
+
     return db.todos(tabla);
 }
 
@@ -13,6 +18,7 @@ function uno(id){
 }
 
 function agregar(body) {
+    console.log(body);
     return db.agregar(tabla, body);
 }
 
@@ -22,5 +28,5 @@ function eliminar(body){
 }
 
 module.exports = {
-    todos,uno,agregar,eliminar
+    todos,uno,agregar,eliminar,historial
 }

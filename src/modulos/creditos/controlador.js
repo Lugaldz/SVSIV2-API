@@ -4,7 +4,12 @@ const tabla = 'tipos_de_creditos';
 
 function todos(){
 
-    return db.todos(tabla);
+    return db.query(tabla,{ idEstatusActividad: 1 });
+}
+
+function nombres(id){
+
+    return db.column(tabla, 'Descripcion');
 
 }
 
@@ -23,5 +28,5 @@ function eliminar(body){
 }
 
 module.exports = {
-    todos,uno,agregar,eliminar
+    todos,uno,agregar,eliminar,nombres
 }

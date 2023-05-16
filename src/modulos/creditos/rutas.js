@@ -2,10 +2,10 @@ const express = require('express');
 const respuesta = require('../../red/respuestas')
 const controlador = require('./controlador')
 
-
 const router = express.Router();
 
 router.get('/', todos);
+router.get('/nombreCreditos', nombres);
 router.get('/:id', uno);
 router.post('/', agregar);
 
@@ -21,12 +21,23 @@ async function todos(req, res, next) {
     }
 };
 
+async function nombres(req, res, next) {
+
+    try {
+        const items = await controlador.nombres();
+        respuesta.success(req, res, items, 200);
+    } catch (error) {
+        next(error);
+    }
+};
+
 async function uno(req, res, next) {
     try {
         const items = await controlador.uno(req.params.id);
         respuesta.success(req, res, items, 200);
     } catch (error) {
         next(error);
+
     }
 };
 

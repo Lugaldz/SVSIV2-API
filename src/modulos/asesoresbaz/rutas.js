@@ -6,6 +6,7 @@ const controlador = require('./controlador')
 const router = express.Router();
 
 router.get('/', todos);
+router.get('/history', historial);
 router.get('/:id', uno);
 router.post('/', agregar);
 
@@ -15,6 +16,15 @@ async function todos(req, res, next) {
 
     try {
         const items = await controlador.todos();
+        respuesta.success(req, res, items, 200);
+    } catch (error) {
+        next(error);
+    }
+};
+async function historial(req, res, next) {
+
+    try {
+        const items = await controlador.historial();
         respuesta.success(req, res, items, 200);
     } catch (error) {
         next(error);
