@@ -7,6 +7,11 @@ function todos(){
     return db.todos(tabla);
 }
 
+function activas(){
+
+    return db.query(tabla,{estatusVigencia:1});
+}
+
 function uno(id){
 
     return db.uno(tabla, id);
@@ -22,5 +27,5 @@ function eliminar(body){
 }
 
 module.exports = {
-    todos,uno,agregar,eliminar
+    todos,uno,agregar,eliminar,activas
 }

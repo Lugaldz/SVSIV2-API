@@ -135,6 +135,33 @@ function queryMultiple(tabla, consulta1, consulta2){
     });
 }
 
+function queryFlex(tabla, consulta){
+
+    let query=`SELECT * FROM ${tabla}`;
+    let count=0;
+    const tamanio = Object.keys(consulta).length;
+    const valores = Object.values(consulta);
+    console.log(valores)
+    for (const key in consulta) {
+        if (consulta.hasOwnProperty(key)) {
+            count++;
+            if (count>1) {
+                count==tamanio ? query+=` AND ${key} = ?;` : query+=` AND ${key} = ?` 
+            }else{
+                query+=` WHERE ${key} = ?`
+            }
+        }
+    }
+    console.log(query)
+    console.log(valores)
+    return  new Promise((resolve, reject)=>{
+        conexion.query(query, valores,(error,result)=>{
+            return error ? reject(error) : resolve(result);
+        })
+    });
+   
+}
+
 function column(tabla, columna){
     return  new Promise((resolve, reject)=>{
         conexion.query(`SELECT ${columna} FROM ${tabla}`, (error,result)=>{
@@ -144,5 +171,5 @@ function column(tabla, columna){
 }
 
 module.exports= {
-    todos,uno,agregar,eliminar,unoCompuesto,agregarCompuesto,eliminarCompuesto,query, queryMultiple, column
+    todos,uno,agregar,eliminar,unoCompuesto,agregarCompuesto,eliminarCompuesto,query, queryMultiple, column,queryFlex
 }

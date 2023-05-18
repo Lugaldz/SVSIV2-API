@@ -1,13 +1,15 @@
 const db = require('../../DB/mysql');
 
-const tabla = 'asesoresbaz';
+const tabla = 'prospectos';
 
-function todos(){
-
-    return db.query(tabla,{EstatusActividad_idEstatusActividad:1});
+async function existe(prospecto){
+    const result = await db.queryFlex(tabla,prospecto); 
+    console.log(result)
+    console.log(result.length!=0)
+    return result.length!=0;
 }
 
-function historial(){
+function todos(){
 
     return db.todos(tabla);
 }
@@ -27,5 +29,5 @@ function eliminar(body){
 }
 
 module.exports = {
-    todos,uno,agregar,eliminar,historial
+    todos,uno,agregar,eliminar,existe//,historial
 }

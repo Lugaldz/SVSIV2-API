@@ -31,6 +31,16 @@ async function historial(req, res, next) {
     }
 };
 
+async function historial(req, res, next) {
+
+    try {
+        const items = await controlador.historial();
+        respuesta.success(req, res, items, 200);
+    } catch (error) {
+        next(error);
+    }
+};
+
 async function uno(req, res, next) {
     try {
         const items = await controlador.uno(req.params.id);
