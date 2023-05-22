@@ -16,7 +16,26 @@ async function todos(req, res, next) {
     try {
         const items = await controlador.todos();
         items.forEach(element => {
-            element.fecha = element.fecha.toISOString().split('T')[0] + " " + element.fecha.toLocaleTimeString()
+            let fecha = element.fecha.toLocaleDateString();
+            fecha = fecha.replaceAll("/", "-");
+            const ano = fecha.substring(fecha.length - 4);
+            fecha = fecha.replace(ano, "");
+        
+            let dia;
+            if (fecha.substring(0, 2).includes("-")) {
+              
+              dia = "0"+fecha.substring(0, 1);
+              fecha = fecha.substring(1);
+            } else {
+              dia = fecha.substring(0, 2);
+              fecha = fecha.substring(2);
+            }
+            if (fecha.length == 3) {
+              fecha = fecha.replace("-", "-0");
+            }
+            fecha = ano + fecha + dia;
+            element.fecha = fecha + " " + element.fecha.toLocaleTimeString();
+            console.log(element.fecha)
         });
         respuesta.success(req, res, items, 200);
     } catch (error) {
@@ -38,6 +57,7 @@ async function uno(req, res, next) {
 
 async function agregar(req, res, next) {
     try {
+        console.log(req.body)
         const items = await controlador.agregar(req.body);
 
         if (req.body.idCitas == 0) {
