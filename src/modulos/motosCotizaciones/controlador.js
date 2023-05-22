@@ -1,9 +1,9 @@
 const db = require('../../DB/mysql');
 const tabla = 'cotizaciones_has_moto';
 
-function todos(idCotizacion) {
+function todos() {
 
-    return db.query(tabla, idCotizacion);
+    return db.todos(tabla);
 }
 
 function uno(id) {
