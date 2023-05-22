@@ -5,7 +5,8 @@ const controlador = require('./controlador')
 
 const router = express.Router();
 
-router.post('/', todos);
+router.post('/', uno);
+router.get('/', todos);
 
 async function todos(req, res, next) {
 
@@ -18,5 +19,19 @@ async function todos(req, res, next) {
         next(error);
     }
 };
+async function uno(req, res, next) {
+
+    try {
+        console.log(req.body)
+        const items = await controlador.uno(req.body);
+        respuesta.success(req, res, items, 200);
+    } catch (error) {
+        next(error);
+    }
+};
+
+
+
+
 
 module.exports = router;
