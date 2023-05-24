@@ -1,5 +1,5 @@
 const db = require('../../DB/mysql');
-
+const usContr = require('../usuarios/controlador');
 const tabla = 'citas';
 
 function todos(){
@@ -19,6 +19,13 @@ function agregar(body) {
 function eliminar(body){
 
     return db.eliminar(tabla, body);
+}
+
+async function citasProximas(user){
+    const usuario = await usContr.unoPorUser(user);
+    const idUser = usuario.idEmpleados;
+
+    const citas = await db.query('citas',{Empleados_idEmpleados:idUser});
 }
 
 module.exports = {
