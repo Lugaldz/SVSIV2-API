@@ -5,7 +5,7 @@ const controlador = require('./controlador')
 
 const router = express.Router();
 
-router.post('/', uno);
+router.post('/', agregar);
 router.get('/', todos);
 
 async function todos(req, res, next) {
@@ -30,6 +30,21 @@ async function uno(req, res, next) {
     }
 };
 
+async function agregar(req, res, next) {
+    try {
+        const items = await controlador.agregar(req.body);
+
+        if (req.body.idRoles == 0) {
+            mensaje = 'Item guardado con exito';
+        } else {
+            mensaje = 'Item actualizado con exito';
+        }
+
+        respuesta.success(req, res, mensaje, 201);
+    } catch (error) {
+        next(error);
+    }
+};
 
 
 

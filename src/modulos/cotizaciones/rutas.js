@@ -51,7 +51,7 @@ async function agregar(req, res, next) {
         const items = await controlador.agregar(req.body);
 
         if (req.body.idCotizaciones == 0) {
-            mensaje = 'Item guardado con exito';
+            mensaje = items.insertId;
         } else {
             mensaje = 'Item actualizado con exito';
         }
