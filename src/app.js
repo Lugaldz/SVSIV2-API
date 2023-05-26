@@ -18,6 +18,9 @@ const prospectos = require('./modulos/prospectos/rutas');
 const cotizaciones = require('./modulos/cotizaciones/rutas');
 const citas = require('./modulos/citas/rutas');
 const cotizacionesMoto = require('./modulos/motosCotizaciones/rutas');
+const estatusServicio = require('./modulos/estatusServicio/rutas');
+const servicios = require('./modulos/servicios/rutas');
+const motosTaller = require('./modulos/motosTaller/rutas');
 
 const error = require('./red/errors');
 
@@ -64,6 +67,9 @@ app.use('/api/prospectos',prospectos);
 app.use('/api/cotizaciones',cotizaciones);
 app.use('/api/citas',citas);
 app.use('/api/cotizacionesMoto',cotizacionesMoto);
+app.use('/api/estatusServicio',estatusServicio);
+app.use('/api/servicios',servicios);
+app.use('/api/motosTaller',motosTaller);
 app.use(error);
 
 
