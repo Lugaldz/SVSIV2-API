@@ -11,7 +11,12 @@ async function existe(servicios){
 
 function todos(){
 
-    return db.todos(tabla);
+    return db.query(tabla,{ idEstatusActividad: 1 });
+}
+
+function activas(){
+
+    return db.query(tabla,{EstatusActividad:1});
 }
 
 function uno(id){
@@ -29,5 +34,5 @@ function eliminar(body){
 }
 
 module.exports = {
-    todos,uno,agregar,eliminar,existe//,historial
+    todos,uno,agregar,eliminar,existe,activas//,historial
 }
