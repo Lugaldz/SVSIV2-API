@@ -1,20 +1,14 @@
 const db = require('../../DB/mysql');
 
-const tabla = 'tipos_de_creditos';
+const tabla = 'motosTaller';
 
 function todos(){
 
-    return db.query(tabla,{ idEstatusActividad: 1 });
-}
-
-function nombres(id){
-
-    return db.column(tabla, 'Descripcion');
-
+    return db.todos(tabla);
 }
 
 function uno(id){
-    
+
     return db.uno(tabla, id);
 }
 
@@ -28,5 +22,5 @@ function eliminar(body){
 }
 
 module.exports = {
-    todos,uno,agregar,eliminar,nombres
+    todos,uno,agregar,eliminar
 }
