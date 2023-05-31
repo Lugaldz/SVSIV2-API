@@ -21,6 +21,15 @@ async function todos(req, res, next) {
         next(error);
     }
 };
+async function historial(req, res, next) {
+
+    try {
+        const items = await controlador.historial();
+        respuesta.success(req, res, items, 200);
+    } catch (error) {
+        next(error);
+    }
+};
 
 async function historial(req, res, next) {
 
