@@ -6,7 +6,6 @@ const controlador = require('./controlador')
 const router = express.Router();
 
 router.get('/', todos);
-router.get('/activas', activas);
 router.get('/:id', uno);
 router.post('/', agregar);
 
@@ -16,16 +15,6 @@ async function todos(req, res, next) {
 
     try {
         const items = await controlador.todos();
-        respuesta.success(req, res, items, 200);
-    } catch (error) {
-        next(error);
-    }
-};
-
-async function activas(req, res, next) {
-
-    try {
-        const items = await controlador.activas();
         respuesta.success(req, res, items, 200);
     } catch (error) {
         next(error);
@@ -46,8 +35,8 @@ async function agregar(req, res, next) {
     try {
         const items = await controlador.agregar(req.body);
 
-        if (req.body.idMoto == 0) {
-            mensaje = 'Item guardado con exito';
+        if (req.body.idMotosTaller == 0) {
+            mensaje = items.insertId;
         } else {
             mensaje = 'Item actualizado con exito';
         }
